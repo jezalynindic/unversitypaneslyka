@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UNITY 2026 - Day 1</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* DAY 1 PAGE STYLES */
+
+        .day-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 55px 45px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #183c2b, #426849);
+            color: #fffdf5;
+            margin-bottom: 38px;
+        }
+
+        .day-hero::after {
+            content: "01";
+            position: absolute;
+            right: 35px;
+            bottom: -65px;
+            font-size: 230px;
+            font-weight: 800;
+            color: rgba(255,255,255,0.07);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .day-label {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .day-hero h1 {
+            position: relative;
+            z-index: 1;
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(38px, 5vw, 65px);
+            line-height: 1.1;
+            margin: 0 0 18px;
+        }
+
+        .day-hero p {
+            position: relative;
+            z-index: 1;
+            max-width: 620px;
+            line-height: 1.8;
+            color: #e7eee5;
+            margin: 0;
+        }
+
+        .day-content {
+            padding: 0 0 35px;
+        }
+
+        .day-section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .day-section-heading h2 {
+            font-family: "Playfair Display", Georgia, serif;
+            color: #234b35;
+            font-size: clamp(26px, 3vw, 36px);
+            margin: 6px 0 0;
+        }
+
+        .day-section-heading p {
+            color: #74796f;
+            margin: 8px 0 0;
+            line-height: 1.7;
+        }
+
+        .day-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .day-photo-card {
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid #e4e6dc;
+            border-radius: 18px;
+            box-shadow: 0 8px 24px rgba(29, 55, 35, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .day-photo-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(29, 55, 35, 0.13);
+        }
+
+        .day-photo-card img {
+            display: block;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: #e8ebdf;
+            transition: transform 0.45s ease;
+        }
+
+        .day-photo-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .day-photo-info {
+            padding: 18px;
+        }
+
+        .day-photo-info span {
+            color: #a17a28;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .day-photo-info h3 {
+            color: #234b35;
+            font-size: 18px;
+            margin: 8px 0;
+        }
+
+        .day-photo-info p {
+            color: #777c72;
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .day-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px 0 40px;
+            padding: 22px;
+            background: #f1f2e9;
+            border: 1px solid #e0e5d7;
+            border-radius: 18px;
+        }
+
+        .day-navigation a {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.25s ease;
+        }
+
+        .day-back {
+            color: #234b35;
+            border: 1px solid #cbd5c4;
+            background: #fff;
+        }
+
+        .day-back:hover {
+            background: #e4eadf;
+        }
+
+        .day-next {
+            background: #234b35;
+            color: #fff;
+        }
+
+        .day-next:hover {
+            background: #3d6748;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            .day-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .day-hero {
+                padding: 42px 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .day-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .day-hero {
+                padding: 35px 23px;
+            }
+
+            .day-hero::after {
+                right: 10px;
+                font-size: 150px;
+            }
+
+            .day-photo-card img {
+                height: 230px;
+            }
+
+            .day-navigation {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .day-navigation a {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- MOBILE MENU -->
+<button class="menu-toggle" id="menuToggle" aria-label="Open navigation">
+    ☰
+</button>
+
+<div class="overlay" id="sidebarOverlay"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+        <div class="brand-mark">U</div>
+        <div class="brand-copy">
+            <strong>ISUFST</strong>
+            <span>San Enrique Campus</span>
+        </div>
+    </div>
+
+    <p class="side-caption">MAIN MENU</p>
+
+    <nav class="side-nav">
+        <a href="index.html">
+            <span>⌂</span> Overview
+        </a>
+
+        <a href="index.html#university">
+            <span>▤</span> University
+        </a>
+
+        <a href="index.html#campus">
+            <span>⌂</span> Campus Office
+        </a>
+
+        <a href="index.html#deans">
+            <span>♙</span> College Deans
+        </a>
+
+        <a href="index.html#faculty">
+            <span>♧</span> Faculty &amp; Staff
+        </a>
+    </nav>
+
+    <p class="side-caption">CAMPUS EVENT</p>
+
+    <nav class="side-nav unity-nav">
+        <a href="unity.html">
+            <span>✦</span> UNITY 2026
+        </a>
+
+        <a href="day1.html" class="active">
+            <span>01</span> Day 1
+        </a>
+
+        <a href="day2.html">
+            <span>02</span> Day 2
+        </a>
+        
+        <a href="performances.html">
+          <span>★</span> Street Dance &amp; Field Demo
+        </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <span class="footer-brand">ISUFST · SAN ENRIQUE</span>
+        <p>Unity, Excellence, Service</p>
+    </div>
+
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main-shell">
+
+    <!-- DAY 1 HERO -->
+    <section class="day-hero">
+        <span class="day-label">UNITY 2026 · EVENT GALLERY</span>
+
+        <h1>Day 1 Highlights</h1>
+
+        <p>
+            Relive the opening day of UNITY 2026 through memorable moments,
+            exciting performances, and the energy of the ISUFST San Enrique
+            Campus community.
+        </p>
+    </section>
+
+    <!-- PHOTO GALLERY -->
+    <section class="day-content">
+
+        <div class="day-section-heading">
+            <div>
+                <span class="section-kicker">THE HIGHLIGHTS</span>
+                <h2>Day 1 Photo Gallery</h2>
+                <p>Explore the activities and unforgettable moments from Day 1.</p>
+            </div>
+        </div>
+
+        <div class="day-gallery">
+
+            <!-- PHOTO 1 -->
+            <article class="day-photo-card">
+                <img src="day1-5.jpg" alt="UNITY 2026 opening activity">
+
+                <div class="day-photo-info">
+                    <span>Opening Activity</span>
+                    <h3>Opening Moments</h3>
+                    <p>
+                        Capturing the excitement and enthusiasm as the
+                        UNITY 2026 celebration begins.
+                    </p>
+                </div>
+            </article>
+
+            <!-- PHOTO 2 -->
+            <article class="day-photo-card">
+                <img src="day1-13.jpg" alt="UNITY 2026 campus participants">
+
+                <div class="day-photo-info">
+                    <span>Campus Community</span>
+                    <h3>Together as One</h3>
+                    <p>
+                        Students and participants coming together to
+                        celebrate unity and campus spirit.
+                    </p>
+                </div>
+            </article>
+
+            <!-- PHOTO 3 -->
+            <article class="day-photo-card">
+                <img src="day1-7.jpg" alt="UNITY 2026 event performance">
+
+                <div class="day-photo-info">
+                    <span>Performance</span>
+                    <h3>Stage Highlights</h3>
+                    <p>
+                        Memorable performances that brought energy and
+                        excitement to the event.
+                    </p>
+                </div>
+            </article>
+
+            <!-- PHOTO 4 -->
+            <article class="day-photo-card">
+                <img src="33.jpg" alt="UNITY 2026 participants">
+
+                <div class="day-photo-info">
+                    <span>Participation</span>
+                    <h3>Campus Pride</h3>
+                    <p>
+                        Participants showing their enthusiasm,
+                        teamwork, and campus pride.
+                    </p>
+                </div>
+            </article>
+
+            <!-- PHOTO 5 -->
+            <article class="day-photo-card">
+                <img src="day1-4.jpg" alt="UNITY 2026 memorable moment">
+
+                <div class="day-photo-info">
+                    <span>Memorable Moments</span>
+                    <h3>Moments to Remember</h3>
+                    <p>
+                        A collection of special moments shared by the
+                        ISUFST San Enrique Campus community.
+                    </p>
+                </div>
+            </article>
+
+            <!-- PHOTO 6 -->
+            <article class="day-photo-card">
+                <img src="G6.jpg" alt="UNITY 2026 group photo">
+
+                <div class="day-photo-info">
+                    <span>Unity</span>
+                    <h3>One Campus, One Community</h3>
+                    <p>
+                        Celebrating friendship, cooperation, and
+                        togetherness throughout Day 1.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- PAGE NAVIGATION -->
+    <nav class="day-navigation" aria-label="Event day navigation">
+
+        <a href="unity.html" class="day-back">
+            ← Back to UNITY 2026
+        </a>
+
+        <a href="day2.html" class="day-next">
+            Explore Day 2 →
+        </a>
+
+    </nav>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            <p>
+                © 2026 ISUFST San Enrique Campus.
+                UNITY 2026 Event Gallery.
+            </p>
+        </div>
+    </footer>
+
+</main>
+
+<script>
+    const sidebar = document.getElementById("sidebar");
+    const menuToggle = document.getElementById("menuToggle");
+    const overlay = document.getElementById("sidebarOverlay");
+
+    function openSidebar() {
+        sidebar.classList.add("open");
+        overlay.classList.add("show");
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove("open");
+        overlay.classList.remove("show");
+    }
+
+    menuToggle.addEventListener("click", () => {
+        if (sidebar.classList.contains("open")) {
+            closeSidebar();
+        } else {
+            openSidebar();
+        }
+    });
+
+    overlay.addEventListener("click", closeSidebar);
+
+    document.querySelectorAll(".sidebar a").forEach(link => {
+        link.addEventListener("click", closeSidebar);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,788 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UNITY 2026 - Street Dance & Field Demo</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f5ec;
+            color: #293d2b;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            padding: 30px 22px;
+            overflow-y: auto;
+            background: #102f27;
+            color: white;
+            z-index: 1000;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            margin-bottom: 28px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .sidebar-logo-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 12px;
+            background: #c1a35a;
+            color: #183426;
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .sidebar-logo-text h2 {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-logo-text span {
+            color: #c4d1c3;
+            font-size: 13px;
+        }
+
+        .sidebar-divider {
+            height: 1px;
+            margin: 20px 0;
+            background: rgba(255,255,255,0.14);
+        }
+
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            list-style: none;
+        }
+
+        .sidebar-links li {
+            list-style: none;
+        }
+
+        .sidebar-links a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 13px;
+            border-radius: 9px;
+            color: #e2e9df;
+            font-size: 14px;
+            text-decoration: none;
+            transition: 0.25s ease;
+        }
+
+        .sidebar-links a:hover,
+        .sidebar-links a.active {
+            background: #294a35;
+            color: #e5cb7a;
+        }
+
+        .sidebar-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            min-width: 24px;
+            font-weight: bold;
+        }
+
+        .sidebar-section-title {
+            margin: 25px 10px 12px;
+            color: #c5ab65;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .sidebar-footer {
+            margin-top: 35px;
+            padding-top: 20px;
+            color: #e6ede4;
+        }
+
+        .sidebar-footer-line {
+            width: 45px;
+            height: 3px;
+            margin-bottom: 16px;
+            border-radius: 5px;
+            background: #c5ab65;
+        }
+
+        .sidebar-footer strong,
+        .sidebar-footer small {
+            display: block;
+        }
+
+        .sidebar-footer strong {
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        .sidebar-footer small {
+            color: #b9c9b8;
+            font-size: 12px;
+        }
+
+        /* MOBILE MENU */
+
+        .sidebar-toggle {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1200;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 10px;
+            background: #102f27;
+            color: white;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+        /* MAIN PAGE */
+
+        main {
+            margin-left: 280px;
+        }
+
+        .streetdance-page {
+            min-height: 100vh;
+            padding: 75px 45px 55px;
+            background:
+                radial-gradient(
+                    circle at 90% 5%,
+                    rgba(196, 170, 98, 0.16),
+                    transparent 32%
+                ),
+                linear-gradient(135deg, #f8f8f0, #edf0e5);
+        }
+
+        .streetdance-content {
+            width: 100%;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+
+        .unity-label {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 9px 15px;
+            border-radius: 30px;
+            background: #e3e9d9;
+            color: #536b3f;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .streetdance-content > h1 {
+            margin-bottom: 24px;
+            color: #243b29;
+            font-size: clamp(34px, 4vw, 57px);
+            font-weight: 900;
+            line-height: 1.12;
+            letter-spacing: -1.5px;
+        }
+
+        .streetdance-description {
+            max-width: 760px;
+            margin-bottom: 45px;
+            color: #657064;
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        /* INTRO */
+
+        .streetdance-intro {
+            margin-bottom: 30px;
+            padding: 28px 30px;
+            border: 1px solid #e8e9df;
+            border-radius: 17px;
+            background: white;
+            box-shadow: 0 8px 25px rgba(31, 54, 34, 0.06);
+        }
+
+        .streetdance-intro h2 {
+            margin-bottom: 12px;
+            color: #304a32;
+            font-size: 21px;
+            letter-spacing: 1px;
+        }
+
+        .streetdance-intro p {
+            color: #687164;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* DEPARTMENT CARDS */
+
+        .department-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 27px;
+            align-items: stretch;
+        }
+
+        .department-card {
+            min-width: 0;
+            overflow: hidden;
+            border: 1px solid #e0e5d9;
+            border-radius: 18px;
+            background: white;
+            box-shadow: 0 8px 24px rgba(32, 52, 33, 0.07);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .department-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 35px rgba(32, 52, 33, 0.14);
+        }
+
+        .department-photo {
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+            background: #e4e8dd;
+        }
+
+        .department-photo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.4s ease;
+        }
+
+        .department-card:hover .department-photo img {
+            transform: scale(1.04);
+        }
+
+        .department-card > h2 {
+            margin: 23px 23px 9px;
+            color: #304a32;
+            font-size: 25px;
+            font-weight: 900;
+        }
+
+        .department-card > p {
+            min-height: 48px;
+            margin: 0 23px 22px;
+            color: #687164;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* FACEBOOK BUTTONS */
+
+        .performance-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 0 23px 25px;
+        }
+
+        .performance-button {
+            display: inline-flex;
+            flex: 1 1 140px;
+            align-items: center;
+            justify-content: center;
+            min-height: 45px;
+            padding: 12px 14px;
+            border: 1px solid #304a32;
+            border-radius: 8px;
+            background: #304a32;
+            color: white;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-align: center;
+            text-decoration: none;
+            transition: 0.25s ease;
+        }
+
+        .performance-button:hover {
+            border-color: #b89b52;
+            background: #b89b52;
+            color: white;
+        }
+
+        /* PAGE NAVIGATION */
+
+        .day-navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 45px;
+            padding-top: 25px;
+            border-top: 1px solid #dce2d5;
+        }
+
+        .back-button,
+        .next-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 45px;
+            padding: 12px 22px;
+            border: 1px solid #304a32;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: 0.25s ease;
+        }
+
+        .back-button {
+            background: white;
+            color: #304a32;
+        }
+
+        .back-button:hover {
+            background: #e7eddf;
+        }
+
+        .next-button {
+            background: #304a32;
+            color: white;
+        }
+
+        .next-button:hover {
+            border-color: #b89b52;
+            background: #b89b52;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-left: 280px;
+            padding: 38px 25px;
+            background: #102f27;
+            color: white;
+            text-align: center;
+        }
+
+        .footer-content h2 {
+            margin-bottom: 10px;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        .footer-content > p {
+            color: #d5e0d4;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .footer-line {
+            width: 55px;
+            height: 3px;
+            margin: 20px auto;
+            background: #c5ab65;
+        }
+
+        .footer-content .copyright {
+            color: #b9c9b8;
+            font-size: 12px;
+        }
+
+        /* TABLET AND MOBILE */
+
+        @media (max-width: 1000px) {
+            .streetdance-page {
+                padding: 75px 28px 45px;
+            }
+
+            .department-grid {
+                gap: 20px;
+            }
+
+            .department-photo {
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            main,
+            footer {
+                margin-left: 0;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .sidebar-toggle {
+                display: block;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+                position: fixed;
+                inset: 0;
+                z-index: 900;
+                background: rgba(0, 0, 0, 0.45);
+            }
+
+            .streetdance-page {
+                padding: 85px 20px 40px;
+            }
+
+            .streetdance-content > h1 {
+                font-size: 36px;
+            }
+
+            .streetdance-description {
+                font-size: 14px;
+            }
+
+            .department-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .department-photo {
+                height: 250px;
+            }
+
+            .department-card > p {
+                min-height: 0;
+            }
+
+            .performance-buttons {
+                flex-direction: column;
+            }
+
+            .performance-button {
+                width: 100%;
+                flex-basis: auto;
+            }
+
+            .day-navigation {
+                flex-direction: column;
+            }
+
+            .back-button,
+            .next-button {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <a href="index.html#home" class="sidebar-logo">
+            <div class="sidebar-logo-box">CL</div>
+            <div class="sidebar-logo-text">
+                <h2>Campus</h2>
+                <span>Leadership</span>
+            </div>
+        </a>
+
+        <div class="sidebar-divider"></div>
+
+        <ul class="sidebar-links">
+            <li>
+                <a href="index.html#home">
+                    <span class="sidebar-icon">⌂</span>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html#university">
+                    <span class="sidebar-icon">U</span>
+                    <span>University</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html#campus">
+                    <span class="sidebar-icon">C</span>
+                    <span>Campus</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html#deans">
+                    <span class="sidebar-icon">D</span>
+                    <span>Deans</span>
+                </a>
+            </li>
+            <li>
+                <a href="index.html#faculty">
+                    <span class="sidebar-icon">F</span>
+                    <span>Faculty &amp; Staff</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-section-title">UNITY 2026'</div>
+
+        <ul class="sidebar-links unity-sidebar">
+            <li>
+                <a href="unity.html">
+                    <span class="sidebar-icon">✦</span>
+                    <span>UNITY 2026'</span>
+                </a>
+            </li>
+            <li>
+                <a href="day1.html" class="active">
+                    <span class="sidebar-icon">01</span>
+                    <span>Day 1</span>
+                </a>
+            </li>
+            <li>
+                <a href="day2.html">
+                    <span class="sidebar-icon">02</span>
+                    <span>Day 2</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-footer-line"></div>
+            <strong>UNITY 2026'</strong>
+            <small>Campus Celebration</small>
+        </div>
+
+    </aside>
+
+    <!-- MOBILE MENU -->
+    <button class="sidebar-toggle"
+            onclick="toggleSidebar()"
+            aria-label="Toggle navigation">
+        ☰
+    </button>
+
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <section class="streetdance-page">
+            <div class="streetdance-content">
+
+                <p class="unity-label">UNITY 2026' · DAY 1</p>
+
+                <h1>
+                    STREET DANCE &amp;<br>
+                    FIELD DEMONSTRATION
+                </h1>
+
+                <p class="streetdance-description">
+                    Experience the energy, creativity, teamwork,
+                    and school spirit of every department as they
+                    showcase their Street Dance and Field
+                    Demonstration performances.
+                </p>
+
+                <div class="streetdance-intro">
+                    <h2>DEPARTMENT PERFORMANCES</h2>
+                    <p>
+                        Discover the talent and creativity of each
+                        department. Choose a Facebook link to watch
+                        its Street Dance or Field Demo performance.
+                    </p>
+                </div>
+
+                <div class="department-grid">
+
+                    <!-- COED -->
+                    <article class="department-card">
+                        <div class="department-photo">
+                            <img src="day1-18.jpg"
+                                 alt="COED performance">
+                        </div>
+
+                        <h2>COED</h2>
+                        <p>College of Education</p>
+
+                        <div class="performance-buttons">
+                            <a href="https://www.facebook.com/share/v/1C6AQcpYat/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="performance-button">
+                                STREET DANCE ↗
+                            </a>
+
+                            <a href="https://www.facebook.com/share/v/1BmzEcEtjP/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="performance-button">
+                                FIELD DEMO ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- CBMSD -->
+                    <article class="department-card">
+                        <div class="department-photo">
+                            <img src="day1-4.jpg"
+                                 alt="CBMSD performance">
+                        </div>
+
+                        <h2>CBMSD</h2>
+                        <p>
+                            College of Business, Management,
+                            and Sustainable Development
+                        </p>
+
+                        <div class="performance-buttons">
+                            <a href="https://www.facebook.com/share/v/1BjpxhS3y6/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="performance-button">
+                                STREET DANCE ↗
+                            </a>
+
+                            <a href="https://www.facebook.com/share/v/1L8tkCWKGY/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="performance-button">
+                                FIELD DEMO ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- COAG -->
+                    <article class="department-card">
+                        <div class="department-photo">
+                            <img src="day1-11.jpg"
+                                 alt="COAG performance">
+                        </div>
+
+                        <h2>COAG</h2>
+                        <p>College of Agriculture</p>
+
+                        <div class="performance-buttons">
+                            <a href="https://www.facebook.com/share/v/19SqwGHESi/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="performance-button">
+                                STREET DANCE ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- CICI -->
+                    <article class="department-card">
+                        <div class="department-photo">
+                            <img src="day1-7.jpg"
+                                 alt="CICI performance">
+                        </div>
+
+                        <h2>CICI</h2>
+                        <p>
+                            College of Informatics and
+                            Computing Innovations
+                        </p>
+
+                        <div class="performance-buttons">
+                            <a href="https://www.facebook.com/share/v/1CLhkTJfYW/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="performance-button">
+                                STREET DANCE ↗
+                            </a>
+
+                            <a href="https://www.facebook.com/share/v/1BXgd7EMDv/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="performance-button">
+                                FIELD DEMO ↗
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="day-navigation">
+                    <a href="day1.html" class="back-button">
+                        ← DAY 1
+                    </a>
+
+                    <a href="unity.html" class="next-button">
+                        UNITY 2026' →
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <h2>UNITY 2026'</h2>
+            <p>STREET DANCE &amp; FIELD DEMONSTRATION</p>
+            <div class="footer-line"></div>
+            <p class="copyright">
+                © 2026 UNITY 2026'. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- MOBILE SIDEBAR SCRIPT -->
+    <script>
+        function toggleSidebar() {
+            document.querySelector(".sidebar").classList.toggle("active");
+            document.querySelector(".sidebar-overlay").classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>

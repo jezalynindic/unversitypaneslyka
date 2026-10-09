@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173f35">
+
+  <title>Meet the Campus | Campus Leadership</title>
+
+  <!-- Separate CSS file -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="sidebar" id="sidebar">
+
+    <a href="index.html#home" class="brand">
+      <span class="brand-mark">CL</span>
+      <span class="brand-copy">
+        <strong>Campus</strong>
+        <small>Leadership Directory</small>
+      </span>
+    </a>
+
+    <div class="side-caption">EXPLORE</div>
+
+    <nav class="side-nav" aria-label="Main navigation">
+      <a class="active" href="index.html#home">
+        <span>⌂</span> Overview
+      </a>
+
+      <a href="#university">
+        <span>01</span> University
+      </a>
+
+      <a href="#campus">
+        <span>02</span> Campus Office
+      </a>
+
+      <a href="#deans">
+        <span>03</span> College Deans
+      </a>
+
+      <a href="#faculty">
+        <span>04</span> Faculty &amp; Staff
+      </a>
+    </nav>
+
+    <!-- UNITY NAVIGATION -->
+    <div class="side-caption event-caption">CAMPUS EVENT</div>
+
+    <nav class="side-nav unity-nav" aria-label="Unity event navigation">
+
+      <a href="unity.html" class="unity-link">
+        <span>✦</span> UNITY 2026'
+      </a>
+
+      <a href="day1.html" class="sub-link">
+        <span>01</span> Day 1
+      </a>
+
+      <a href="day2.html" class="sub-link">
+        <span>02</span> Day 2
+      </a>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+      <span class="online-dot"></span>
+      <div>
+        <strong>Campus community</strong>
+        <small>Leadership • Service • Growth</small>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MOBILE MENU BUTTON -->
+  <button
+    class="menu-toggle"
+    onclick="toggleSidebar()"
+    aria-label="Toggle navigation"
+    aria-expanded="false">
+    ☰
+  </button>
+
+  <div class="overlay" onclick="toggleSidebar()"></div>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-shell" id="home">
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+
+      <div class="hero-text">
+
+        <p class="eyebrow">
+          <span></span> PEOPLE WHO MOVE US FORWARD
+        </p>
+
+        <h1>
+          Meet the people<br>
+          behind our <em>campus.</em>
+        </h1>
+
+        <p class="hero-intro">
+          Get to know the leaders, educators, and campus teams who help
+          shape learning, support students, and build a stronger
+          university community.
+        </p>
+
+        <div class="hero-actions">
+          <a class="primary-action" href="#university">
+            Explore leadership <span>↘</span>
+          </a>
+
+          <a class="text-action" href="#faculty">
+            Meet the team <span>→</span>
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span>PEOPLE</span>
+          <i></i>
+          <span>PURPOSE</span>
+          <i></i>
+          <span>PROGRESS</span>
+        </div>
+
+      </div>
+
+      <div class="hero-art" aria-label="Campus leadership directory artwork">
+
+        <div class="art-ring ring-one"></div>
+        <div class="art-ring ring-two"></div>
+
+        <div class="art-panel">
+          <span class="panel-kicker">OUR CAMPUS</span>
+
+          <div class="panel-monogram">
+            CL<span>+</span>
+          </div>
+
+          <div class="panel-rule"></div>
+
+          <strong>
+            Leadership is<br>
+            service in action.
+          </strong>
+
+          <small>Campus Leadership Directory · 2026</small>
+        </div>
+
+        <div class="floating-note note-top">
+          <span class="note-symbol">✳</span>
+          <div>
+            <strong>Shared purpose</strong>
+            <small>One campus, many talents</small>
+          </div>
+        </div>
+
+        <div class="floating-note note-bottom">
+          <span class="note-symbol">↗</span>
+          <div>
+            <strong>Growing together</strong>
+            <small>Learning through leadership</small>
+          </div>
+        </div>
+
+        <span class="art-stamp">
+          CAMPUS<br>COMMUNITY
+        </span>
+
+      </div>
+
+      <div class="hero-index">
+        <span>01</span> / CAMPUS DIRECTORY
+      </div>
+
+    </header>
+
+    <!-- UNIVERSITY PRESIDENT -->
+    <section class="content-section university-section" id="university">
+
+      <div class="section-top">
+        <div>
+          <p class="section-kicker">01 — UNIVERSITY LEVEL</p>
+          <h2>Leadership at the top.</h2>
+        </div>
+
+        <p class="section-summary">
+          Setting direction, building opportunity, and guiding the
+          university's mission.
+        </p>
+      </div>
+
+      <article class="president-feature">
+
+        <div class="president-photo">
+          <img src="pres.png" alt="Dr. Nordy Siason">
+          <span class="photo-tag">UNIVERSITY LEADERSHIP</span>
+        </div>
+
+        <div class="president-details">
+          <p class="role-label">UNIVERSITY PRESIDENT</p>
+
+          <h3>Dr. Nordy Siason</h3>
+
+          <p class="role-name">University President</p>
+
+          <div class="accent-line"></div>
+
+          <p class="bio">
+            Providing leadership and direction in achieving the
+            university's mission, vision, and goals.
+          </p>
+
+          <div class="feature-foot">
+            <span>VISION &amp; DIRECTION</span>
+            <span>✦</span>
+          </div>
+        </div>
+
+      </article>
+
+    </section>
+
+    <!-- CAMPUS ADMINISTRATION -->
+    <section class="content-section campus-section" id="campus">
+
+      <div class="section-top">
+        <div>
+          <p class="section-kicker">02 — CAMPUS LEVEL</p>
+          <h2>The team on campus.</h2>
+        </div>
+
+        <p class="section-summary">
+          The people coordinating daily operations and helping campus
+          services run smoothly.
+        </p>
+      </div>
+
+      <div class="leader-grid">
+
+        <article class="leader-card">
+          <div class="leader-photo">
+            <img src="campusAd.png" alt="Dr. Micheal B. Dizon">
+            <span class="number-stamp">A</span>
+          </div>
+
+          <div class="leader-info">
+            <p class="role-label">CAMPUS ADMINISTRATION</p>
+            <h3>Dr. Micheal B. Dizon</h3>
+            <p>Campus Administrator</p>
+          </div>
+        </article>
+
+        <article class="leader-card">
+          <div class="leader-photo">
+            <img src="AdminOfficer.png" alt="Mrs. Melby Parreño">
+            <span class="number-stamp">B</span>
+          </div>
+
+          <div class="leader-info">
+            <p class="role-label">ADMINISTRATIVE SERVICES</p>
+            <h3>Mrs. Melby Parreño</h3>
+            <p>Administrative Officer</p>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- COLLEGE DEANS -->
+    <section class="content-section dean-section" id="deans">
+
+      <div class="section-top">
+        <div>
+          <p class="section-kicker">03 — COLLEGE LEVEL</p>
+          <h2>Guiding every discipline.</h2>
+        </div>
+
+        <p class="section-summary">
+          Academic leaders supporting their colleges and the students
+          who make them thrive.
+        </p>
+      </div>
+
+      <div class="dean-grid">
+
+        <article class="dean-card">
+          <div class="dean-photo">
+            <img src="coed.png" alt="Dr. Rene Estomo">
+          </div>
+
+          <div class="dean-info">
+            <span>COLLEGE OF EDUCATION</span>
+            <h3>Dr. Rene Estomo</h3>
+            <p>Dean of College of Education</p>
+          </div>
+
+          <span class="card-arrow">↗</span>
+        </article>
+
+        <article class="dean-card">
+          <div class="dean-photo">
+            <img src="cbmsd.png" alt="Dr. Janice H. Ching">
+          </div>
+
+          <div class="dean-info">
+            <span>BUSINESS &amp; MANAGEMENT</span>
+            <h3>Dr. Janice H. Ching</h3>
+            <p>
+              Dean of College of Business, Management, and
+              Sustainable Development
+            </p>
+          </div>
+
+          <span class="card-arrow">↗</span>
+        </article>
+
+        <article class="dean-card">
+          <div class="dean-photo">
+            <img src="coag.png" alt="Dr. Noli Gerona">
+          </div>
+
+          <div class="dean-info">
+            <span>COLLEGE OF AGRICULTURE</span>
+            <h3>Dr. Noli Gerona</h3>
+            <p>Dean of College of Agriculture</p>
+          </div>
+
+          <span class="card-arrow">↗</span>
+        </article>
+
+        <article class="dean-card">
+          <div class="dean-photo">
+            <img src="ccs.png" alt="Dr. Wenda D. Panes">
+          </div>
+
+          <div class="dean-info">
+            <span>COMPUTING STUDIES</span>
+            <h3>Dr. Wenda D. Panes</h3>
+            <p>Dean of College of Computer Studies</p>
+          </div>
+
+          <span class="card-arrow">↗</span>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- FACULTY AND STAFF -->
+    <section class="content-section people-section" id="faculty">
+
+      <div class="section-top">
+        <div>
+          <p class="section-kicker">04 — CICI COMMUNITY</p>
+          <h2>Meet the people who teach.</h2>
+        </div>
+
+        <p class="section-summary">
+          Faculty members who share knowledge, encourage ideas,
+          and help students build their future.
+        </p>
+      </div>
+
+      <div class="people-grid">
+
+        <article class="person-tile">
+          <img src="dave.png" alt="Instr. Dave Allan Tagacay">
+          <div>
+            <h3>Instr. Dave Allan Tagacay</h3>
+            <p>CICI Faculty Member</p>
+          </div>
+        </article>
+
+        <article class="person-tile">
+          <img src="Ian.png" alt="Dr. Ian Sugatan">
+          <div>
+            <h3>Dr. Ian Sugatan</h3>
+            <p>CICI Faculty Member</p>
+          </div>
+        </article>
+
+        <article class="person-tile">
+          <img src="Ann.png" alt="Dr. Analiza G. Alingalan">
+          <div>
+            <h3>Dr. Analiza G. Alingalan</h3>
+            <p>CICI Faculty Member</p>
+          </div>
+        </article>
+
+        <article class="person-tile">
+          <img src="weena.png" alt="Dr. Weena J. Bulnes">
+          <div>
+            <h3>Dr. Weena J. Bulnes</h3>
+            <p>CICI Faculty Member</p>
+          </div>
+        </article>
+
+        <article class="person-tile">
+          <img src="Dacudao.png" alt="Dr. Dythe P. Dacudao">
+          <div>
+            <h3>Dr. Dythe P. Dacudao</h3>
+            <p>CICI Faculty Member</p>
+          </div>
+        </article>
+
+        <article class="person-tile">
+          <img src="ivan.png" alt="Instr. Ivan Silvestre">
+          <div>
+            <h3>Instr. Ivan Silvestre</h3>
+            <p>CICI Faculty Member</p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="staff-heading">
+        <div>
+          <p class="section-kicker">THE PEOPLE BEHIND THE SCENES</p>
+          <h2>Our support team.</h2>
+        </div>
+
+        <p>
+          Keeping the campus connected, organized, and moving forward.
+        </p>
+      </div>
+
+      <div class="staff-grid">
+
+        <article class="staff-tile">
+          <img src="andrea.png" alt="Andrea Delos Santos">
+          <div>
+            <h3>Andrea Delos Santos</h3>
+            <p>CICI Staff</p>
+          </div>
+        </article>
+
+        <article class="staff-tile">
+          <img src="mike.png" alt="Jay Micheal Borcillo">
+          <div>
+            <h3>Jay Micheal Borcillo</h3>
+            <p>CICI Staff</p>
+          </div>
+        </article>
+
+        <article class="staff-tile">
+          <img src="dwayne.png" alt="Dwayne Padernal">
+          <div>
+            <h3>Dwayne Padernal</h3>
+            <p>CICI Staff</p>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+      <div class="footer-brand">
+        <span class="brand-mark">CL</span>
+
+        <div>
+          <strong>Campus Leadership</strong>
+          <small>People. Purpose. Progress.</small>
+        </div>
+      </div>
+
+      <p>
+        A directory celebrating the people who help our campus
+        move forward.
+      </p>
+
+      <div class="footer-bottom">
+        <span>© 2026 Campus Leadership</span>
+        <a href="#home">Back to top ↑</a>
+      </div>
+
+    </footer>
+
+  </main>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.querySelector(".sidebar");
+      const overlay = document.querySelector(".overlay");
+      const button = document.querySelector(".menu-toggle");
+
+      sidebar.classList.toggle("open");
+      overlay.classList.toggle("show");
+
+      button.setAttribute(
+        "aria-expanded",
+        sidebar.classList.contains("open")
+      );
+    }
+
+    // Highlight section links and close mobile menu after selection
+    document.querySelectorAll(".side-nav a[href^='#']").forEach(link => {
+      link.addEventListener("click", () => {
+        document.querySelectorAll(".side-nav a").forEach(item => {
+          item.classList.remove("active");
+        });
+
+        link.classList.add("active");
+
+        if (
+          window.innerWidth <= 900 &&
+          document.querySelector(".sidebar").classList.contains("open")
+        ) {
+          toggleSidebar();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

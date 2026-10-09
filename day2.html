@@ -1,0 +1,656 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UNITY 2026 - Day 2</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* DAY 2 PAGE STYLES */
+
+        .day2-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 55px 45px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #183c2b, #426849);
+            color: #fffdf5;
+            margin-bottom: 42px;
+        }
+
+        .day2-hero::after {
+            content: "02";
+            position: absolute;
+            right: 30px;
+            bottom: -65px;
+            font-size: 230px;
+            font-weight: 800;
+            line-height: 1;
+            color: rgba(255, 255, 255, 0.07);
+            pointer-events: none;
+        }
+
+        .day2-label {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .day2-hero h1 {
+            position: relative;
+            z-index: 1;
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(38px, 5vw, 65px);
+            line-height: 1.1;
+            margin: 0 0 18px;
+        }
+
+        .day2-hero p {
+            position: relative;
+            z-index: 1;
+            max-width: 650px;
+            line-height: 1.8;
+            color: #e7eee5;
+            margin: 0;
+        }
+
+        .event-section {
+            margin-bottom: 55px;
+            scroll-margin-top: 25px;
+        }
+
+        .event-heading {
+            margin-bottom: 24px;
+        }
+
+        .event-heading .section-kicker {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .event-heading h2 {
+            color: #234b35;
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(27px, 3.5vw, 38px);
+            margin: 0 0 12px;
+        }
+
+        .event-heading p {
+            color: #74796f;
+            line-height: 1.8;
+            max-width: 720px;
+            margin: 0;
+        }
+
+        .event-banner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            background: #f0f2e8;
+            border: 1px solid #e0e5d7;
+        }
+
+        .event-banner-image {
+            min-height: 280px;
+            overflow: hidden;
+        }
+
+        .event-banner-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 280px;
+            object-fit: cover;
+            background: #e2e7dc;
+            transition: transform 0.45s ease;
+        }
+
+        .event-banner-image:hover img {
+            transform: scale(1.04);
+        }
+
+        .event-banner-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .event-tag {
+            color: #a17a28;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.7px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .event-banner-content h3 {
+            color: #234b35;
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(24px, 3vw, 34px);
+            line-height: 1.2;
+            margin: 0 0 14px;
+        }
+
+        .event-banner-content p {
+            color: #656c61;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .event-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .event-photo-card {
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid #e4e6dc;
+            border-radius: 17px;
+            box-shadow: 0 8px 24px rgba(29, 55, 35, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-photo-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(29, 55, 35, 0.13);
+        }
+
+        .event-photo-card img {
+            display: block;
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            background: #e8ebdf;
+            transition: transform 0.45s ease;
+        }
+
+        .event-photo-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .event-photo-info {
+            padding: 17px;
+        }
+
+        .event-photo-info span {
+            color: #a17a28;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+        }
+
+        .event-photo-info h4 {
+            color: #234b35;
+            font-size: 17px;
+            margin: 8px 0;
+        }
+
+        .event-photo-info p {
+            color: #777c72;
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .day2-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px 0 40px;
+            padding: 22px;
+            background: #f1f2e9;
+            border: 1px solid #e0e5d7;
+            border-radius: 18px;
+        }
+
+        .day2-navigation a {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.25s ease;
+        }
+
+        .day2-back {
+            color: #234b35;
+            border: 1px solid #cbd5c4;
+            background: #fff;
+        }
+
+        .day2-back:hover {
+            background: #e4eadf;
+        }
+
+        .day2-home {
+            color: #fff;
+            background: #234b35;
+        }
+
+        .day2-home:hover {
+            background: #3d6748;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            .event-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .day2-hero {
+                padding: 42px 30px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .event-banner {
+                grid-template-columns: 1fr;
+            }
+
+            .event-banner-image,
+            .event-banner-image img {
+                min-height: 220px;
+                height: 220px;
+            }
+
+            .event-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .event-photo-card img {
+                height: 250px;
+            }
+
+            .day2-hero {
+                padding: 35px 23px;
+            }
+
+            .day2-hero::after {
+                right: 10px;
+                font-size: 150px;
+            }
+
+            .day2-navigation {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .day2-navigation a {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- MOBILE MENU -->
+<button class="menu-toggle" id="menuToggle" aria-label="Open navigation">
+    ☰
+</button>
+
+<div class="overlay" id="sidebarOverlay"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+        <div class="brand-mark">U</div>
+        <div class="brand-copy">
+            <strong>ISUFST</strong>
+            <span>San Enrique Campus</span>
+        </div>
+    </div>
+
+    <p class="side-caption">MAIN MENU</p>
+
+    <nav class="side-nav">
+        <a href="index.html">
+            <span>⌂</span> Overview
+        </a>
+
+        <a href="index.html#university">
+            <span>▤</span> University
+        </a>
+
+        <a href="index.html#campus">
+            <span>⌂</span> Campus Office
+        </a>
+
+        <a href="index.html#deans">
+            <span>♙</span> College Deans
+        </a>
+
+        <a href="index.html#faculty">
+            <span>♧</span> Faculty &amp; Staff
+        </a>
+    </nav>
+
+    <p class="side-caption">CAMPUS EVENT</p>
+
+    <nav class="side-nav unity-nav">
+        <a href="unity.html">
+            <span>✦</span> UNITY 2026
+        </a>
+
+        <a href="day1.html">
+            <span>01</span> Day 1
+        </a>
+
+        <a href="day2.html" class="active">
+            <span>02</span> Day 2
+        </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <span class="footer-brand">ISUFST · SAN ENRIQUE</span>
+        <p>Unity, Excellence, Service</p>
+    </div>
+
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main-shell">
+
+    <!-- HERO -->
+    <section class="day2-hero">
+        <span class="day2-label">UNITY 2026 · EVENT GALLERY</span>
+
+        <h1>Day 2 Highlights</h1>
+
+        <p>
+            Celebrate the creativity, confidence, diversity, and campus
+            spirit of UNITY 2026. Explore the highlights from the
+            LGBTQIA+ celebration and the Mr. &amp; Ms. Akwe 2026 event.
+        </p>
+    </section>
+
+    <!-- LGBTQIA+ SECTION -->
+    <section class="event-section" id="lgbtqia">
+
+        <div class="event-heading">
+            <span class="section-kicker">DAY 2 · FEATURED EVENT</span>
+            <h2>LGBTQIA+ Celebration</h2>
+            <p>
+                A celebration of diversity, self-expression, inclusion,
+                and respect within the campus community.
+            </p>
+        </div>
+
+        <!-- FEATURE IMAGE -->
+        <div class="event-banner">
+
+            <div class="event-banner-image">
+                <img src="G16.jpg"
+                     alt="LGBTQIA+ celebration at UNITY 2026">
+            </div>
+
+            <div class="event-banner-content">
+                <span class="event-tag">Diversity · Inclusion · Pride</span>
+
+                <h3>Celebrating Every Identity</h3>
+
+                <p>
+                    Highlighting the colors, confidence, talent, and
+                    individuality of participants. These moments
+                    recognize the importance of creating a welcoming
+                    and respectful campus for everyone.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- LGBTQIA+ PHOTO GALLERY -->
+        <div class="event-gallery">
+
+            <article class="event-photo-card">
+                <img src="G9.jpg"
+                     alt="LGBTQIA+ event highlight">
+
+                <div class="event-photo-info">
+                    <span>Event Highlight</span>
+                    <h4>Colors of Pride</h4>
+                    <p>
+                        Moments that express individuality, pride,
+                        and togetherness.
+                    </p>
+                </div>
+            </article>
+
+            <article class="event-photo-card">
+                <img src="G5.jpg"
+                     alt="LGBTQIA+ participants">
+
+                <div class="event-photo-info">
+                    <span>Participants</span>
+                    <h4>Confidence and Expression</h4>
+                    <p>
+                        Celebrating the confidence and creativity
+                        of the participants.
+                    </p>
+                </div>
+            </article>
+
+            <article class="event-photo-card">
+                <img src="G2.jpg"
+                     alt="LGBTQIA+ celebration memorable moment">
+
+                <div class="event-photo-info">
+                    <span>Memorable Moment</span>
+                    <h4>United in Diversity</h4>
+                    <p>
+                        Sharing meaningful moments of acceptance
+                        and community spirit.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- MR. & MS. AKWE 2026 SECTION -->
+    <section class="event-section" id="akwe">
+
+        <div class="event-heading">
+            <span class="section-kicker">DAY 2 · FEATURED EVENT</span>
+            <h2>Mr. &amp; Ms. Akwe 2026</h2>
+            <p>
+                Showcasing personality, talent, confidence, and the
+                unique qualities of the candidates in this special event.
+            </p>
+        </div>
+
+        <!-- FEATURE IMAGE -->
+        <div class="event-banner">
+
+            <div class="event-banner-image">
+                <img src="M25.jpg"
+                     alt="Mr. and Ms. Akwe 2026 event">
+            </div>
+
+            <div class="event-banner-content">
+                <span class="event-tag">Confidence · Talent · Character</span>
+
+                <h3>A Celebration of Excellence</h3>
+
+                <p>
+                    Relive the special moments of Mr. &amp; Ms. Akwe 2026,
+                    from the candidates' appearances to the highlights
+                    that made the event memorable.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- AKWE PHOTO GALLERY -->
+        <div class="event-gallery">
+
+            <article class="event-photo-card">
+                <img src="M11.jpg"
+                     alt="Mr. and Ms. Akwe 2026 candidates">
+
+                <div class="event-photo-info">
+                    <span>Candidates</span>
+                    <h4>Meet the Candidates</h4>
+                    <p>
+                        Introducing the candidates who brought their
+                        confidence and individuality to the stage.
+                    </p>
+                </div>
+            </article>
+
+            <article class="event-photo-card">
+                <img src="day2-11.jpg"
+                     alt="Mr. and Ms. Akwe 2026 stage presentation">
+
+                <div class="event-photo-info">
+                    <span>Stage Presentation</span>
+                    <h4>On the Spotlight</h4>
+                    <p>
+                        A look at the candidates' stage presence,
+                        style, and personality.
+                    </p>
+                </div>
+            </article>
+
+            <article class="event-photo-card">
+                <img src="M19.jpg"
+                     alt="Mr. and Ms. Akwe 2026 special moment">
+
+                <div class="event-photo-info">
+                    <span>Special Moments</span>
+                    <h4>Memories on Stage</h4>
+                    <p>
+                        Capturing the excitement and memorable
+                        moments of the competition.
+                    </p>
+                </div>
+            </article>
+
+            <article class="event-photo-card">
+                <img src="M12.jpg"
+                     alt="Mr. and Ms. Akwe 2026 candidates together">
+
+                <div class="event-photo-info">
+                    <span>Unity</span>
+                    <h4>Celebrating Together</h4>
+                    <p>
+                        Celebrating the participants and the
+                        community behind the event.
+                    </p>
+                </div>
+            </article>
+
+            <article class="event-photo-card">
+                <img src="M24.jpg"
+                     alt="Mr. and Ms. Akwe 2026 event highlight">
+
+                <div class="event-photo-info">
+                    <span>Event Highlight</span>
+                    <h4>Highlights of the Night</h4>
+                    <p>
+                        Remembering the moments that made the
+                        event special.
+                    </p>
+                </div>
+            </article>
+
+            <article class="event-photo-card">
+                <img src="M6.jpg"
+                     alt="Mr. and Ms. Akwe 2026 group photo">
+
+                <div class="event-photo-info">
+                    <span>Campus Community</span>
+                    <h4>One Memorable Celebration</h4>
+                    <p>
+                        A celebration of participation, support,
+                        and campus pride.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- PAGE NAVIGATION -->
+    <nav class="day2-navigation" aria-label="Event day navigation">
+
+        <a href="day1.html" class="day2-back">
+            ← Back to Day 1
+        </a>
+
+        <a href="unity.html" class="day2-home">
+            ✦ UNITY 2026 Home
+        </a>
+
+    </nav>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-bottom">
+            <p>
+                © 2026 ISUFST San Enrique Campus.
+                UNITY 2026 Event Gallery.
+            </p>
+        </div>
+    </footer>
+
+</main>
+
+<!-- MOBILE SIDEBAR SCRIPT -->
+<script>
+    const sidebar = document.getElementById("sidebar");
+    const menuToggle = document.getElementById("menuToggle");
+    const overlay = document.getElementById("sidebarOverlay");
+
+    function openSidebar() {
+        sidebar.classList.add("open");
+        overlay.classList.add("show");
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove("open");
+        overlay.classList.remove("show");
+    }
+
+    menuToggle.addEventListener("click", () => {
+        if (sidebar.classList.contains("open")) {
+            closeSidebar();
+        } else {
+            openSidebar();
+        }
+    });
+
+    overlay.addEventListener("click", closeSidebar);
+
+    document.querySelectorAll(".sidebar a").forEach(link => {
+        link.addEventListener("click", closeSidebar);
+    });
+</script>
+
+</body>
+</html>
